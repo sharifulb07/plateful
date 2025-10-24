@@ -63,7 +63,7 @@ export default function BottomNav() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsFixed(window.scrollY > 50);
+      setIsFixed(window.scrollY > 500);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -73,10 +73,10 @@ export default function BottomNav() {
     <div
       className={`
     w-full bg-white shadow-sm transition-all duration-500
-    ${isFixed ? "fixed top-0 left-0 z-50 " : " "}
+    ${isFixed ? "fixed top-0 left-0 z-50 fixed-nav " : " "}
     `}
     >
-      <div className="flex items-center justify-center space-x-5 px-[8%] lg:px-[16%] text-gray-700">
+      <div className="flex items-center justify-between space-x-5 px-[8%] lg:px-[16%] text-gray-700">
         {/* Desktop Nav */}
 
         <Link
@@ -132,7 +132,96 @@ export default function BottomNav() {
             )
           )}
         </nav>
+        <button className="nav-button cursor-pointer font-bold bg-[var(--prim-color)] text-white p-3 hidden lg:flex">
+          <i className="bi bi-telephone pe-2 text-xl"></i> 88+123 456 789
+        </button>
+
+        {/* Mobile Nav Bar  */}
+
+        <div className="lg:hidden flex items-center justify-between gap-4 w-full">
+          <button
+            className="text-2xl focus:outline-none"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            <div className="flex items-center gap-x-5">
+              <i className="ri-menu-line"></i>
+            </div>
+          </button>
+          <div className="flex lg:hidden items-center space-x-6">
+
+          <Link href={"#"} className="relative">
+            <i className="bi bi-heart text-gray-600 hover:text-[var(--prim-color)] transition-all"></i>
+
+            <span className="absolute -top-2 -right-2 bg-[var(--prim-color)] text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">
+              1
+            </span>
+          </Link>
+          {/* cart */}
+          <Link href={"#"} className="relative">
+            <i className="bi bi-cart text-gray-600 hover:text-[var(--prim-color)] transition-all"></i>
+
+            <span className="absolute -top-2 -right-2 bg-[var(--prim-color)] text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">
+              2
+            </span>
+          </Link>
+          </div>
+          <button className="nav-button cursor-pointer font-bold bg-[var(--prim-color)] text-white p-3 ">
+          <i className="bi bi-telephone pe-2 text-xl"></i> 88+123 456 789
+        </button>
+        </div>
       </div>
+
+      {/* Mobile Menu */}
+
+      {mobileMenuOpen && (
+        <div className="lg:hidden bg-white border-t border-gray-200 shadow-md overflow-hidden transition-all duration-500">
+          <nav className="flex flex-col py-4 px-[4%] space-y-1">
+          {navLinks.map((link) =>
+            link.dropdown ? (
+              <div key={link.label} className="flex flex-col">
+                <button onClick={()=>toggleDropDown(link.label)} className="flex justify-between items-center w-full p-2 font-medium rounded-md hover:bg-gray-100 ">
+                  {link.label} <i className={`ri-arrow-down-s-line transition-transform ${openDropDowns[link.label]? "rotate-180":""}`}></i>
+                </button>
+                <div className={` ${openDropDowns[link.label]? "block":"hidden"} bg-white shadow-xl p-2 border border-gray-100 rounded-lg min-w-[150px] `}>
+                  {link.dropdown.map((item) =>
+                    item.label == "Shop Details" ? (
+                      <Link
+                        key={item.label}
+                        href={item.href}
+                        className="block px-4 py-2 rounded-md hover: bg-[var(--prim-light)] transition-all"
+                      >
+                        {item.label}
+                      </Link>
+                    ) : item.label == "Blog Details" ? (
+                      <link
+                        key={item.label}
+                        href={item.href}
+                        className="block px-4 py-2 rounded-md hover: bg-[var(--prim-light)] transition-all"
+                      >
+                        {item.label}
+                      </link>
+                    ) : (
+                      <Link
+                        key={item.label}
+                        href={item.href}
+                        className="block px-4 py-2 rounded-md hover:bg-[var(--prim-light)] transition-all"
+                      >
+                        {item.label}
+                      </Link>
+                    )
+                  )}
+                </div>
+              </div>
+            ) : (
+              <Link key={link.label} href={link.href}>
+                {link.label}
+              </Link>
+            )
+          )}
+          </nav>
+
+        </div>
+      )}
     </div>
   );
 }

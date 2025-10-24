@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import {  Merienda, Unbounded } from "next/font/google";
 import "./globals.css";
+import 'remixicon/fonts/remixicon.css';
+
 import Navbar from "./components/Navbar/Navbar";
 
 
