@@ -133,35 +133,36 @@ body {
   }
 }
 
-@media (max-width:575px){
+@media (max-width: 575px) {
   .swiper-button-prev-custom,
-  .swiper-button-next-custom{
+  .swiper-button-next-custom {
     display: none;
   }
 
-  .Hero{
+  .Hero {
     padding: 5%;
   }
 
-  .hero-wrap h1{
+  .hero-wrap h1 {
     font-size: 2rem;
   }
 
-  
+  .banner-content {
+    font-size: 2.8rem;
+    line-height: 3.5rem;
+  }
 }
-
 
 /* category */
 
-.category-wrap:hover{
+.category-wrap:hover {
   transform: scale(1.1);
 }
 
-.category-image{
+.category-image {
   height: 120px;
   width: 140px;
   background-color: var(--prim-light);
   border-radius: 100%;
   display: flex;
 }
-

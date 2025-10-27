@@ -63,7 +63,7 @@ export default function BottomNav() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsFixed(window.scrollY > 500);
+      setIsFixed(window.scrollY > 5000);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);

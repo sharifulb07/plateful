@@ -1,0 +1,111 @@
+[
+    {
+      "id": 1,
+      "image": "https://example.com/images/fresh-tomatoes.jpg",
+      "title": "Fresh Red Tomatoes (1kg)",
+      "price": 2.99,
+      "lessprice": 1.99,
+      "review": 4.8,
+      "sold": 3400
+    },
+    {
+      "id": 2,
+      "image": "https://example.com/images/organic-potatoes.jpg",
+      "title": "Organic Potatoes (2kg)",
+      "price": 4.99,
+      "lessprice": 3.49,
+      "review": 4.6,
+      "sold": 2750
+    },
+    {
+      "id": 3,
+      "image": "https://example.com/images/carrots.jpg",
+      "title": "Crunchy Carrots (1kg)",
+      "price": 2.49,
+      "lessprice": 1.79,
+      "review": 4.5,
+      "sold": 3120
+    },
+    {
+      "id": 4,
+      "image": "https://example.com/images/onions.jpg",
+      "title": "Yellow Onions (1kg)",
+      "price": 1.99,
+      "lessprice": 1.29,
+      "review": 4.7,
+      "sold": 5200
+    },
+    {
+      "id": 5,
+      "image": "https://example.com/images/spinach.jpg",
+      "title": "Fresh Spinach Leaves (250g)",
+      "price": 1.49,
+      "lessprice": 0.99,
+      "review": 4.9,
+      "sold": 1875
+    },
+    {
+      "id": 6,
+      "image": "https://example.com/images/garlic.jpg",
+      "title": "Garlic Bulbs (500g)",
+      "price": 3.49,
+      "lessprice": 2.49,
+      "review": 4.6,
+      "sold": 2100
+    },
+    {
+      "id": 7,
+      "image": "https://example.com/images/ginger.jpg",
+      "title": "Fresh Ginger Root (250g)",
+      "price": 2.99,
+      "lessprice": 1.99,
+      "review": 4.8,
+      "sold": 1950
+    },
+    {
+      "id": 8,
+      "image": "https://example.com/images/brown-rice.jpg",
+      "title": "Organic Brown Rice (5kg)",
+      "price": 15.99,
+      "lessprice": 11.99,
+      "review": 4.7,
+      "sold": 1450
+    },
+    {
+      "id": 9,
+      "image": "https://example.com/images/olive-oil.jpg",
+      "title": "Extra Virgin Olive Oil (1L)",
+      "price": 12.99,
+      "lessprice": 9.49,
+      "review": 4.9,
+      "sold": 2250
+    },
+    {
+      "id": 10,
+      "image": "https://example.com/images/milk.jpg",
+      "title": "Fresh Cow Milk (1L)",
+      "price": 2.49,
+      "lessprice": 1.89,
+      "review": 4.8,
+      "sold": 4100
+    },
+    {
+      "id": 11,
+      "image": "https://example.com/images/eggs.jpg",
+      "title": "Farm Fresh Eggs (12pcs)",
+      "price": 3.99,
+      "lessprice": 2.99,
+      "review": 4.7,
+      "sold": 4800
+    },
+    {
+      "id": 12,
+      "image": "https://example.com/images/broccoli.jpg",
+      "title": "Green Broccoli (500g)",
+      "price": 3.49,
+      "lessprice": 2.49,
+      "review": 4.5,
+      "sold": 1620
+    }
+  ]
+  

@@ -60,7 +60,7 @@ export default function Category() {
       >
         {catgories.map((category, index) => (
           <SwiperSlide key={index}>
-            <div className="category-wrap cursor-pointer flex flex-col justify-center items-center">
+            <div className="category-wrap cursor-pointer flex flex-col justify-center items-center py-2.5">
               <div className="">
                 <Image
                   src={category.image}
