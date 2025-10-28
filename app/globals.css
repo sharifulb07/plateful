@@ -166,3 +166,10 @@ body {
   border-radius: 100%;
   display: flex;
 }
+
+
+.deals-wrap{
+  background: url("../public/deals/bg.png");
+  background-position: center center;
+  background-size: cover;
+}
