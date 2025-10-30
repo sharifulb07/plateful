@@ -1,7 +1,31 @@
 import Link from "next/link";
-import React from "react";
+import React, { useMemo, useState } from "react";
+
+// All json data 
+import BestDeals from "@/app/JsonData/BestDeals.json";
+interface ProductType{
+  Id:string;
+  title?:string;
+  Name?:string;
+  ProductImage?:string;
+  image?:string;
+  price?:string;
+  Price?:string;
+}
+
+
 
 export default function MiddleNav() {
+const [cartCount, setCartCount]=useState(0);
+const [wishList, setWishiList]=useState(0);
+
+// Search Stats
+const [searchTerm, setSearchTerm]=useState("")
+const [results, setResults]=useState<ProductType[]>([]);
+
+
+const allProducts:ProductType[]=useMemo(()=>[...BestDeals], [])
+
   return (
     <div className="w-full bg-[var(--prim-light)] border-b border-gray-300 relative">
       <div className="flex items-center justify-between py-5 px-[8%] lg:px-[12%] ">

@@ -3,6 +3,7 @@ import "@/app/globals.css";
 
 import Image from "next/image";
 import { StaticImageData } from "next/image";
+import Link from "next/link";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
@@ -128,7 +129,7 @@ export default function Deals() {
       {/* Best Products Deals */}
 
       <div className="my-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
           {products.map((product) => (
             <div
               key={product.id}
@@ -152,6 +153,33 @@ export default function Deals() {
                   </button>
                 </div>
               </div>
+
+              <Link
+                href={{
+                  pathname: "/UI-Components/Shop",
+                  query: { id: product.id },
+                }}
+              >
+                <div className="space-x-1 mt-5 product-info">
+                  <div className="flex items-center gap-2">
+                    <span className="text-gray-500 line-through text-sm">
+                      {product.lessprice}
+                    </span>
+                    <span className="font-semibold text-xl">
+                      {product.price}
+                    </span>{" "}
+                    <span className="text-gray-500 text-sm">/Qty</span>
+                  </div>
+                  <span className="flex items-center text-md text-yellow-500">
+                    <i className="bi bi-star-fill me-1"></i> {product.review}
+                  </span>
+                  <h2 className="text-xl font-normal Unbounded my-2 hover:text-[var(--prime-color)] transition-all duration-300">{product.title}</h2>
+                  <h6 className="text-lg text-gray-500 flex items-center gap-1">
+                <i className="bi bi-shop text-[var(--prim-color)]"></i> By Lucky Supermarket   
+                  </h6>
+                  <h3 className="mt-2 Unbounded text-md text-gray-400 ">Sold: {product.sold}</h3>
+                </div>
+              </Link>
             </div>
           ))}
         </div>
