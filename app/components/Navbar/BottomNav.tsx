@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
+import BestDeals from "@/app/JsonData/BestDeals.json";
 
 type NavLinks = {
   label: string;
@@ -50,12 +51,73 @@ const navLinks: NavLinks[] = [
   { label: "Contact Us", href: "/UI-Components/contact" },
 ];
 
+interface ProductType {
+  id: string;
+  title?: string;
+  Name?: string;
+  ProductImage?: string;
+  image?: string;
+  price?: string;
+  Price?: string;
+}
+
 export default function BottomNav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openDropDowns, setOpenDropDowns] = useState<Record<string, boolean>>(
     {}
   );
   const [isFixed, setIsFixed] = useState(false);
+  
+  const [cartCount, setCartCount] = useState(0);
+  const [wishList, setWishList] = useState(0);
+
+  // Search States
+  const [searchTerm, setSearchTerm] = useState("");
+  const [results, setResults] = useState<ProductType[]>([]);
+
+  const allProducts: ProductType[] = useMemo(() => [...BestDeals], []);
+
+  // 🔍 Search filter logic
+  useEffect(() => {
+    if (!searchTerm.trim()) {
+      setResults([]);
+      return;
+    }
+
+    const filtered = allProducts.filter((p) =>
+      (p.Name || p.title || "").toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    setResults(filtered);
+  }, [searchTerm, allProducts]);
+
+  // 🛒 Load Cart & Wishlist counts safely
+  useEffect(() => {
+    const loadCounts = () => {
+      try {
+        const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+        console.log(cart);
+        const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
+        console.log(wishlist);
+
+        const uniqueCart = new Set(cart.map((item: any) => item.id));
+        const uniqueWishlist = new Set(wishlist.map((item: any) => item.id));
+
+        setCartCount(uniqueCart.size);
+        setWishList(uniqueWishlist.size);
+      } catch (err) {
+        console.error("Error loading from localStorage:", err);
+      }
+    };
+
+    // Run once initially
+    loadCounts();
+
+    // Listen for updates triggered elsewhere in app
+    window.addEventListener("storageUpdate", loadCounts);
+
+    return () => window.removeEventListener("storageUpdate", loadCounts);
+  }, []);
 
   const toggleDropDown = (label: string) => {
     setOpenDropDowns((prev) => ({ ...prev, [label]: !prev[label] }));
@@ -151,18 +213,22 @@ export default function BottomNav() {
 
           <Link href={"#"} className="relative">
             <i className="bi bi-heart text-gray-600 hover:text-[var(--prim-color)] transition-all"></i>
+          {wishList>0 && (
 
             <span className="absolute -top-2 -right-2 bg-[var(--prim-color)] text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">
-              1
+              {wishList}
             </span>
+          )}
           </Link>
           {/* cart */}
           <Link href={"#"} className="relative">
             <i className="bi bi-cart text-gray-600 hover:text-[var(--prim-color)] transition-all"></i>
+            {cartCount>0 &&(
 
             <span className="absolute -top-2 -right-2 bg-[var(--prim-color)] text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">
-              2
+              {cartCount}
             </span>
+            )}
           </Link>
           </div>
           <button className="nav-button cursor-pointer font-bold bg-[var(--prim-color)] text-white p-3 ">

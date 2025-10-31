@@ -71,6 +71,33 @@ export default function Deals() {
     }
   };
 
+  // add wishlist
+  const handleAddToWishlist = (product: any) => {
+    try {
+      const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
+      const existingProduct = wishlist.find((item: any) => item.id === product.id);
+
+      if (existingProduct) {
+        toast(`${product.title} is already in the wishlist`, {
+          icon: "💔",
+          style: {
+            border: "1px solid #fb7185",
+            padding: "16px",
+            color: "#333",
+            background: "#ffe4e6",
+          },
+        });
+      } else {
+        wishlist.push(product);
+        localStorage.setItem("wishlist", JSON.stringify(wishlist));
+        window.dispatchEvent(new Event("storageUpdate"));
+        toast.success(`${product.title} added to wishlist! 💖`);
+      }
+    } catch (error) {
+      console.error("Error adding to wishlist:", error);
+    }
+  };
+
   return (
     <div className="px-[8%] lg:px-[12%] py-10">
       <div className="title my-10 w-full flex flex-col lg:flex-row items-center justify-between gap-5">
@@ -144,13 +171,19 @@ export default function Deals() {
                   height={180}
                 />
 
-                <div className="absolute top-0 right-0 flex items-center justify-between mt-2">
+                <div className="absolute top-0 right-0 w-full flex items-center justify-between mt-2">
                   <button
                     onClick={() => handleAddToCart(product)}
                     className="px-4 py-2 font-semibold text-[var(--prim-color)] bg-[var(--prim-light)] rounded-full text-md hover:bg-[var(--prim-color)] hover:text-white transition"
                   >
                     add <i className="bi bi-cart"></i>
                   </button>
+                  <button
+                  onClick={() => handleAddToWishlist(product)}
+                  className="px-4 py-2 text-sm font-semibold text-[var(--prim-color)] bg-[var(--prim-light)] rounded-full hover:bg-pink-500 hover:text-white transition"
+                >
+                  <i className="bi bi-heart"></i>
+                </button>
                 </div>
               </div>
 
